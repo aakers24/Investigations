@@ -12,6 +12,8 @@ Notes:
 
 * The first email's sender is from the domain `anderson[.]assocmicroscope[.]com` which has an untrusted/malicious reputation according to Talos.
 
+* *The body of the email is Content-Transfer-Encoding: Hexa which is an "invalid" content encoding type. There are 5 valid types including Base64, Quoted-Printable, 8bit, 7bit, Binary, and x-token. Upon decoding the encoded email body using a Base64 decoder, I got readable html.*
+
 * The email is basically just one big link to `hxxps[://]storage[.]googleapis[.]com/fh4gh8j1x7723s0bpy/z909o3g3k1cc9nxzkj[.]html#OfOvuJg061qQFk8aL3ki[.]AwQllRgnSnTnGmdtPU?ffRL5gccT597cy7JQcdcW5cKc9jcBhF0fcbbb5c`
 
 * From `urlscan.io` I can see that it's a link to googleapi (obviously) that initiates 3 http transactions. Primarily, it tries to download an HTML file `z909o3g3k1cc9nxzkj.html`. It also eventually tries to access an address on the domain `bedtimesnap[.]com`. Both URLs in this redirect chain have questionable reputations on Talos.
